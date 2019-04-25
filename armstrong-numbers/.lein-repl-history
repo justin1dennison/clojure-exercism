@@ -1,0 +1,72 @@
+(def single-digits (range 1 10))
+(into [] single-digits)
+(armstrong?)
+(armstrong?
+2)
+(defn armstring [n]
+(defn armstrong [n]
+   (let [as-str (str n)
+         length (count as-str)
+         digits (into [] (map Integer/parseInt as-str))]
+   )
+    (reduce + digits))
+Integer/parseInt
+((. Integer parseInt) "32")
+((. Integer parseInt "32"))
+(. Integer parseInt)
+(Integer/parseInt "32")
+(defn armstrong [n]
+  #_=>    (let [as-str (str n)
+  #_=>          length (count as-str)
+  #_=>          digits (into [] (map Integer/parseInt as-str))]
+  #_=>    )
+(defn armstrong [n]
+  (let [s (str n)
+        length (count s)
+        digits (into [] (map #(Integer/parseInt %) s)))
+        digits (into [] (map #(Integer/parseInt %) s))]
+(defn armstrong [n]
+  (let [s (str n)
+        length (count s)
+        digits (into [] (map #(Integer/parseInt %) s))]
+   (reduce + digits))
+)
+(armstrong 5)
+(str 34)
+(def s (str 34))
+s
+(def length (count s))
+length
+(into [] (map #(Integer/parseInt %) s))
+(into [] (map #(Integer/parseInt %) (seq s)))
+(into [] (map #(Integer/parseInt (str %)) (seq s)))
+(into [] (map #(Integer/parseInt (str %))seq s))
+(into [] (map #(Integer/parseInt (str %)) s))
+(require ns-armstrong)
+(armstrong?)
+(armstrong-numbers/armstrong?)
+(require '[armstrong-numbers :as a])
+(defn armstrong? [num]
+    let [s (str num)
+         length (count s)
+         digits (into-vec (map parse-int s))
+         powsum (sum-of-powers digits length)]
+    (= powsum num))
+(defn pow [x n]
+  (reduce * (repeat n x)))
+(defn parse-int [c]
+  (Integer/parseInt (str c)))
+(defn sum-of-powers [xs power]
+  (reduce + (map #(pow % length) xs)))
+(defn into-vec [args]
+(require '[armstrong-numbers :as a])
+(defn armstrong? [n]
+   (let [s (str n)
+         length (count s)
+        ])
+   [s length])
+(defn armstrong? [n]
+   (let [s (str n)
+         length (count s)]
+    [s length]))
+(armstrong? 123)
