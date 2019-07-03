@@ -7,5 +7,4 @@
     (first args)))
 
 (defn two-fer [& args] 
-  (let [ name (get-name args) ]
-    (str "One for " name ", one for me.")))
+  (str "One for " (get-name args) ", one for me."))
