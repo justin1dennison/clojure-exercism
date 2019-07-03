@@ -1,0 +1,24 @@
+(seq "123")
+(list "123)
+)
+(list "123")
+(require '[clojure.string :as s])
+(s/split "" "123")
+(s/split "123" #"")
+(s/subs "123" 2)
+(subs "123" 2)
+(subs "123" 0 2)
+(loop 
+(loop [iter 0 results []]
+  (if (= iter 9)
+   results
+   (recur (inc iter) (conj results (subs "123456084730280" iter 10))))
+)
+(def test-str "12352402840")
+(defn series [string length]
+  (loop [iter 0 results []]
+    (if (= iter (len string))
+     results
+     (recur (inc iter) (conj results (subs string iter (+ iter length + 1))))))
+)
+(length? "123")
