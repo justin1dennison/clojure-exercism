@@ -70,3 +70,86 @@ length
          length (count s)]
     [s length]))
 (armstrong? 123)
+(def x 32013)
+x
+(defn number-of-digits [n]
+(loop [x 342]
+  (when (> x 1)
+  (println x)
+  (recur (/ x 10))))
+(loop [x 342]
+  (when (> x 1)
+  (recur (/ x 10) x))))
+(loop [x 342]
+  (when (> x 1)
+  (recur (/ x 10) x)))
+(loop [x 342]
+  (when (> x 1)
+  (recur (/ x 10)) x))
+(loop [x 342]
+  (when (> x 1)
+  (recur (/ x 10)
+  x)))
+(loop [x 342]
+  (if (zero? x)
+   nil
+   (recur (/ x 10))))
+(loop [x 342]
+  (if (< x 1)
+  nil
+  (recur (/ x 10))))
+(/ 342 10)
+(quot 342 10)
+(mod 342 10)
+(mod 34 10)
+(mod 4 10)
+(mod 3 10)
+(quot 3 10)
+(defn digits [n]
+  (loop [x n]
+(iterate (mod 342 10))
+(iterate #(mod % 10) 342)
+(take-while #(not (zero? %)) (interate #(mod % 10) 342))
+(take-while #(not (zero? %)) (iterate #(mod % 10) 342))
+(loop [n 342 result []]
+  if(zero? n)
+   result
+   (recur (quot n 10) (conj result (mod n 10))))
+(loop [n 342 result []]
+  (if zero? n)
+   result
+   (recur (quot n 10) (conj result (mod n 10))))
+(quot 342 10)
+[(quot 342 10) (mod 342 10)]
+(loop [n 342]
+(loop [n 342 result []]
+(loop [n 342 iter 0 result []]
+  (if (>= iter 3)
+   result 
+   (recur (quot n 10) (inc iter) (conj result (mod n 10)))))
+(loop [n 342 iter 0 result []]
+  (println n iter result)
+  (if (>= iter 3)
+   result
+   (recur (quot n 10) (inc iter) (conj result (mod n 10)))))
+(loop [n 342 result []]
+  (if (<= n 0)
+   (reverse result)
+   (recur (quot n 10) (conj result (mod n 10))))
+)
+_
+(_)
+(count '(3 4 2))
+(count (3 4 2))
+(count '(3 4 2))
+(count (lst 3 4 2))
+(list 3 4 2)
+(count (list 3 4 2))
+(ns armstrong-numbers)
+(require '[armstrong-numbers.armstrong?])
+(in-ns armstrong-numbers)
+*ns*
+(in-ns 'armstrong-numbers)
+(armstrong-numbers/armstrong? 321)
+(require '[armstrong-numbers :as a])
+(a/armstrong? 321)
