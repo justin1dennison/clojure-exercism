@@ -1,16 +1,11 @@
 (ns series)
 
-(defn n-tuple [string length]
-  (loop [iter 0 results []]
-    (if (= iter (- (count string) 2))
-      results
-      (recur 
-        (inc iter) 
-        (conj results (subs string iter (+ iter length)))))))
+(defn transform-maker [length]
+  (comp
+   (partial map clojure.string/join)
+   #(partition length 1 %)))
 
-(defn slices [string length] 
-  (let [str-length (count string)]
-    (cond
-      (< str-length length) []
-      (zero? str-length) []
-      :else (n-tuple string length))))
+(defn slices [string length]
+  (if (zero? length)
+    [""]
+    ((transform-maker length) string)))
