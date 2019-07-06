@@ -1,0 +1,54 @@
+(def s "AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTCTGATAGCAGC")
+(s)
+s
+(key "A")
+(frequencies s)
+(type (frequencies s))
+(\A (frequencies s))
+(get \A)
+(def f (frequencies s))
+(\A f)
+(:A f)
+(keys f)
+(get f \A)
+clear
+(def string "ACGTCGATAAGGCCTGATTT")
+(map 
+  (fn [c] (str c " "))
+  string)
+(map
+  (fn [c] (hashmap c 1)
+  string)
+)
+(map
+  (fn [c] (hasmap c 1))
+  string)
+(map
+  (fn [c] (hashmap c 1))
+  string)
+hash-map 
+(map
+  (fn [c] (hash-map c 1))
+  string)
+(merge-with +
+   (hash-map \A 0, \C 0, \T 0, \G 0)
+   (map #((hash-map % 1)) string))
+(hash-map \C 0)
+(hash-map \A 0, \C 0)
+(hash-map \A 0, \C 0, \T 0, \G 0)
+(merge-with +
+   (hash-map \A 0, \C 0, \T 0, \G 0)
+   (map #((hash-map % 1)) (seq string)))
+(map #(hash-map % 1) (seq string))
+(merge-with +
+   (hash-map \A 0, \C 0, \T 0, \G 0)
+   (map #(hash-map % 1) (seq string)))
+(merge-with + (map #(hash-map % 1) (seq string)))
+(def items (map #(hash-map % 1) (seq string)))
+items
+(merge-with + items)
+(merge items)
+(apple (partial merge-with +) items)
+(apply (partial merge-with +) items)
+(apply merge-with + items)
+(apply merge-with + {\A 0, \C 0 , \G 0, \T 0 } items)
