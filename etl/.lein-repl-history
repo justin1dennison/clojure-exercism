@@ -1,0 +1,26 @@
+(defn transform [data]
+  (let [[k v] data]
+    println(format("%s:%v"))))
+(def input {1 ["APPLE" "ARTICHOKE"], 2 ["BOAT" "BALLERINA"]})
+(transform input)
+(defn transform [data]
+   (let [d data]
+    (println (format "%s" d))))
+(transform input)
+(def sample {1 ["APPLE" "ARTICHOKE"], 2 ["BOAT" "BALLERINA"]})
+sample
+(keys sample)
+(vals sample)
+(flatten (vals sample))
+(for [x (keys sample)] [(get sample x) x])
+(for [x (keys sample) y (get sample x)] [y x])
+(apply hash-map (for [x (keys sample) y (get sample x)] [y x]))
+(merge (map  hash-map (for [x (keys sample) y (get sample x)] [y x])))
+(map  hash-map (for [x (keys sample) y (get sample x)] [y x]))
+(map  #(hash-map %1 %2) (for [x (keys sample) y (get sample x)] [y x]))
+(map  #(hash-map %1 %2) (for [x (keys sample) y (get sample x)] [y x])))
+(for [x (keys sample) y (get sample x)] [y x]))
+(for [x (keys sample) y (get sample x)] [y x])
+(into (hash-map) (for [x (keys sample) y (get sample x)] [y x]))
+(into (hash-map) (for [x (keys sample) y (get sample x)] [(clojure.string/lower-case y) x]))
+exit()
