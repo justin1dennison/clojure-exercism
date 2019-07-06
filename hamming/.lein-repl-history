@@ -1,0 +1,42 @@
+(use '[clojure.zip :as zip])
+zip
+(require '[clojure.zip :as zip])
+(zip/zipper "ABDACD" "ADVADE")
+(mapv #('(%1 %2)) "ABCDABD" "ABDABDA")
+(mapv #((list %1 %2)) "ABCDABD" "ABDABDA")
+(def pair [x y] [x y])
+(defn pair [x y] [x y])
+(mapv pair "ABADCAD" "ADVADVDA")
+(defn distance [one two]
+  (let [pairs (mapv pair one two)]
+    (loop [n 0]
+      (if (= n (count pairs))
+(defn distance [one two]
+  (let [pairs (mapv pair one two)]
+    (loop [iter 0 n 0]
+      (if (= iter (count pairs))
+       n
+       (recur (inc iter) (if (= (get pairs 0) (get pairs 1)) (inc n) n)))))
+)
+(distance "AVACAD" "ADAVADCDA")
+(count (mapv pair "AVAD" "ADVA"))
+(let [[k v] (mapv pair one two]
+(let [[k v] (mapv pair one two)]
+  (println k v))
+(let [[k v] (mapv pair "ABAD" "ABDA")]
+  (println k v))
+exit()
+(def zip [x y]
+  (apply vec x y))
+(defn zip [x y]
+  (apply vec x y))
+(zip "AVAD" "ADVA")
+(defn zip [x y]
+  (map vector x y)
+)
+(zip "AVAD" "ADVA")
+(reduce (fn [acc [k v]] (if (= k v) (inc acc) acc)) 0)
+(reduce + (range 1 10) 0)
+(reduce + 0 (range 1 10))
+(reduce (fn [acc [k v]] (if (= k v) (inc acc) acc)) 0 (zip "AVAD" "ADVA"))
+exit()
