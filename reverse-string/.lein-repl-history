@@ -1,0 +1,13 @@
+(loop [start "abc" results [])
+(loop [start "abc" results []
+  (if (zero? (count start))
+    (clojure.string/join "" results)
+    (recur (subs start 1) (cons (subs start 0 1) results)))
+)
+(loop [start "abc" results []
+  (if (zero? (count start))
+    (clojure.string/join "" results)
+(loop [start "abc" results []]
+  (if (zero? (count start))
+    (clojure.string/join "" results)
+    (recur (subs start 1) (cons (subs start 0 1) results))))
