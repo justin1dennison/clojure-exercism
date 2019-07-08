@@ -1,12 +1,16 @@
-(ns triangle
-  (:require [clojure.math.combinatorics :as c]))
+(ns triangle)
 
-(defn type [a b c]
-  (let [sides (list a b c)
-        [x y z] (sort sides)]
-    (if (and (< z (+ x y)) (every? #(> % 0) sides))
-      (cond
-        (= a b c) :equilateral
-        (some (partial apply =) (c/combinations sides 2)) :isosceles
-        :else :scalene)
-      :illogical)))
+(defn illogical? [sides]
+  (let [[x y z] (sort sides)]
+    (not (and 
+      (< z (+ x y)) 
+      (every? #(> % 0) sides)))))
+
+(defn type [& sides]
+  (let [distinct-sides (count (distinct sides))]
+    (if (illogical? sides)
+      :illogical
+      (case distinct-sides
+        1 :equilateral
+        2 :isosceles
+        3 :scalene))))
