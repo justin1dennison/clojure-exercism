@@ -1,0 +1,7 @@
+(use '[protein-translation :as t])
+(t/translate-codon "AUG")
+(def sample "UGGUGUUAUUAAUGGUUU")
+(partition 3 3 sample)
+(map clojure.string/join "" (partition 3 3 sample))
+(map #(clojure.string/join "" %) (partition 3 3 sample))
+(map t/translate-codon (map #(clojure.string/join "" %) (partition 3 3 sample)))
