@@ -26,12 +26,8 @@
     (cond
       (empty? (trim s)) "Fine. Be that way!"
       (and 
-        (yelling? cleaned) 
-        (not (question? cleaned))) "Whoa, chill out!"
-      (and 
-        (question? cleaned)
-        (not (yelling? cleaned))) "Sure."
-      (and 
         (yelling? cleaned)
         (question? cleaned)) "Calm down, I know what I'm doing!"
+      (yelling? cleaned) "Whoa, chill out!"
+      (question? cleaned) "Sure."
       :else "Whatever.")))
