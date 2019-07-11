@@ -1,0 +1,5 @@
+(use '[beer-song :as beer])
+(beer/verse-template)
+beer/verse-template
+(format beer/verse-template "" "" "" "")
+exit

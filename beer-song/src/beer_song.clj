@@ -2,28 +2,31 @@
   (:require [clojure.string :as string]))
 
 
-(defn beer-wall [n]
-  (if (= n 1)
-      (str "1 bottle of beer on the wall")
-      (str n " bottles of beer on the wall")))
+(defn verse-data [n]
+  (case n
+    0 ["No more bottles", "no more bottles", "Go to the store and buy some more", "99 bottles"]
+    1 ["1 bottle", "1 bottle", "Take it down and pass it around", "no more bottles"]
+    2 ["2 bottles" "2 bottles", "Take one down and pass it around", "1 bottle"] 
+    [(str n " bottles")
+     (str n " bottles")
+     "Take one down and pass it around"
+     (str (dec n) " bottles")]))
+
+(def verse-template
+  (str "%s of beer on the wall, %s of beer.\n"
+       "%s, %s of beer on the wall.\n"))
 
 (defn verse
   "Returns the nth verse of the song."
   [num]
-  (condp = num
-    0 (str "No more bottles of beer on the wall, no more bottles of beer.\n"
-           "Go to the store and buy some more, 99 bottles of beer on the wall.\n")
-    1 (str "1 bottle of beer on the wall, 1 bottle of beer.\n"
-           "Take it down and pass it around, "
-           "no more bottles of beer on the wall.\n")
-    (str (beer-wall num) ", " num " bottles of beer.\n"
-         "Take one down and pass it around, " (beer-wall (dec num)) ".\n")))
+  (let [[a b c d] (verse-data num)]
+    (format verse-template a b c d)))
 
 
 (defn sing
   "Given a start and an optional end, returns all verses in this interval. If
   end is not given, the whole song from start is sung."
-  ([start]  (sing start 0)) 
+  ([start]  (sing start 0))
   ([start end] (->>
                 (range start (dec end) -1)
                 (map verse)
