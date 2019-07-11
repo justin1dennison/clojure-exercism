@@ -1,15 +1,16 @@
 (ns gigasecond
   (:require [clj-time.core :as t]))
 
-(def seconds 1000000000)
+(defn flip [f]
+  (fn [& xs]
+    (apply f (reverse xs))))
 
-(defn from [year month day] 
-  (let [date (t/date-time year month day)
-        next-date (t/plus date (t/seconds seconds))        
-        ]
-    [
-     (t/year next-date) 
-     (t/month next-date) 
-     (t/day next-date)]))
+(def plus (flip t/plus))
+(def gigaseconds (t/seconds 1e9))
+
+(defn from [y m d] 
+   (->> (t/date-time y m d) 
+        (plus gigaseconds)
+        ((juxt t/year t/month t/day))))
     
     
