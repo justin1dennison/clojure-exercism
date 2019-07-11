@@ -1,0 +1,61 @@
+(def value (10^9))
+(def value (^ 10 9))
+(def seconds (reduce * (repeat 10 9)))
+seconds
+(defn exp [b x]
+  (reduce * (repeat b x)))
+(exp 2 3)
+(defn exp [b x]
+  (reduce * (repeat x b)))
+(exp 2 3)
+(exp 10 9)
+(def seconds (exp 10 9))
+seconds
+(def seconds-per-hour 3600)
+(def seconds-per-day (* 24 seconds-per-hour))
+(seconds / 31)
+(/ seconds 31)
+(float (/ seconds 31))
+(mod seconds 31)
+clojure.java.time
+clojure.java-time
+java
+java.util.Date.
+(java.util.Date.)
+(def date java.util.Calendar.)
+(java.util.Calendar)
+(java.util.Calendar.)
+(java.util.Date. 1977 1 1)
+(java.util.Date. 1977 0 1)
+(java.util.Date. (* 1000 seconds))
+(def sample [1977 1 1])
+(let [[year month day]]
+  (java.util.Date. (- year 1900) (dec month) day)))
+(let [[year month day]]
+  (java.util.Date. (- year 1900) (dec month) day))
+(let [[year month day] sample]
+  (java.util.Date. (- year 1900) (dec month) day))
+(def date [year month day] (java.util.Date (- year 1900) (dec month) day))
+(defn date [year month day] (java.util.Date (- year 1900) (dec month) day))
+(def d (date 1977 1 1))
+(defn date [year month day] (java.util.Date. (- year 1900) (dec month) day))
+(def d (date 1977 1 1))
+d
+java.util.GregorianCalendar 
+(java.util.GregorianCalendar. 1977 1 1)
+(def date [year month day] (java.util.GregorianCalendar. year (dec month) day))
+(defn date [year month day] (java.util.GregorianCalendar. year (dec month) day))
+(date 1977 1 1)
+java.util.Calendar/SECOND
+(.add date java.util.Calendar/SECOND (exp 10 9))
+(.add date)
+(.toString date)
+(.add date java.util.Calendar/SECOND (exp 10 9))
+(.add date 13 (int (exp 10 9)))
+(.clone date)
+(.add (java.util.GregorianCalendar. 1991 1 1) java.util.GregorianCalendar/SECOND (exp 10 9))
+clojure.instant 
+(use 'clj-time)
+(require '[clj-time.core :as t])
+(t/date-time 1977 1 1)
+(t/plus (t/date-time 1977 1 1) (t/seconds 1000000000))
