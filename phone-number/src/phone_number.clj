@@ -1,28 +1,33 @@
 (ns phone-number)
 
+(def default "0000000000")
+
 (defn strip [coll chars]
-  (apply str (remove #((set chars) %) coll)))
+  (apply str (remove (set chars) coll)))
+
+(defn starts-with? [start x]
+  (= (first x) start))
 
 (defn number [num-string]
-  (let [stripped (strip num-string "- ( ) .")]
+  (let [n (strip num-string "- ( ) .")]
     (cond
-      (= (count stripped) 11)
-      (if (= (first stripped) \1)
-        (subs stripped 1)
-        "0000000000")
-      (< (count stripped) 10) 
-        "0000000000"
-      :else stripped)))
+      (and
+       (= (count n) 11)
+       (starts-with? \1 n)) (subs n 1)
+      (= (count n) 10) n
+      :else default)))
 
 (defn area-code [num-string]
   (subs (number num-string) 0 3))
 
+(defn- prefix [num-string]
+  (subs (number num-string) 3 6))
+
+(defn- line-number [num-string]
+  (subs (number num-string) 6))
+
 (defn pretty-print [num-string]
-  (let [n (number num-string)]
-    (str
-     "("
-     (area-code num-string)
-     ") "
-     (subs n 3 6)
-     "-"
-     (subs n 6))))
+  (format "(%s) %s-%s"
+          (area-code num-string)
+          (prefix num-string)
+          (line-number num-string)))
