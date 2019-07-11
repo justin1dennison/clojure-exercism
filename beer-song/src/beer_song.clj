@@ -23,11 +23,8 @@
 (defn sing
   "Given a start and an optional end, returns all verses in this interval. If
   end is not given, the whole song from start is sung."
-  ([start] (string/join "\n"
-             (into [] 
-                   (map verse 
-                        (range start -1 -1)))))
-  ([start end] (string/join  "\n"
-                 (into [] 
-                       (map verse 
-                            (range start (dec end) -1))))))
+  ([start]  (sing start 0)) 
+  ([start end] (->>
+                (range start (dec end) -1)
+                (map verse)
+                (string/join "\n"))))
