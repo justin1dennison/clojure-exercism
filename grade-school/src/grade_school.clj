@@ -13,8 +13,10 @@
      (conj (get school grade) name))
     (assoc school grade [name])))
 
+(defn- sort-map-values [[k v]]
+  [k (into [] (sort v))])
+
 (defn sorted [school]
-  (into 
-    (sorted-map) 
-    (for [k (keys school)] 
-      [k (vec (sort (school k)))])))
+  (->> school
+    (map sort-map-values)
+    (into (sorted-map))))
