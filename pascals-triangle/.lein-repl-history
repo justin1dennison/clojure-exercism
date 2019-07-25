@@ -1,0 +1,93 @@
+(->> [1 3 3 1]
+     (partition 2))
+(->> [1 3 3 1]
+     (partition 2)
+     (reduce + 0))
+(->> [1 3 3 1]
+     (partition 2)
+     (apply #(reduce + 0)))
+(def sum (partial reduce + 0))
+(->> [1 3 3 1]
+     (partition 2)
+     (map sum))
+(->> [1 3 3 1]
+     (partition 2)
+     (map sum)
+     (into [])
+     (cons 1)
+     (conj 1))
+(->> [1 3 3 1]
+     (partition 2)
+     (map sum)
+     (into [])
+     (cons 1))
+(->> [1 3 3 1]
+     (partition 2)
+     (map sum)
+     (into [])
+     (cons 1)
+     #(conj % 1))
+(->> [1 3 3 1]
+     (partition 2)
+     (map sum)
+     (into [])
+     (cons 1)
+     (#(conj % 1)))
+(->> [1 3 3 1]
+     (partition 2)
+     (map sum)
+     (cons 1)
+     (#(conj % 1))
+     (into []))
+(->> [1 3 3 1]
+     (partition 2)
+     (map sum)
+     (cons 1)
+     (into [])
+     (#(conj % 1))
+)
+(->> [1 2 1]
+     (partition 2)
+     (map (partial reduce + 0))))
+(->> [1 2 1]
+     (partition 2)
+     (map (partial reduce + 0)))
+(partition 2 [1 2 1])
+(partition 2 1 [1 2 1])
+(loop [start [1] idx 1]
+ (if (= idx 4)
+   start
+(loop [start [[1] [1 1]] idx 1]
+  (if (= idx 4)
+   start
+   (recur start (inc idx))))
+(vec '(1 2))
+(def factorial (partial * 1))
+(require '[pascals-triangle :refer :all])
+(n-choose-k 3 2)
+(def row 3)
+(def r 3)
+(for [row (range 40) col (range (inc row))] (n-choose-k row col))
+(for [row (range 10) col (range (inc row))] (n-choose-k row col))
+(for [row (range 10) col (range (inc row))] [(n-choose-k row col)])
+(for [row (range 10)] (into [] (map #(n-choose-k row %) (range (inc row)))))
+(for [row (range 10)] (map #(n-choose-k row %) (range (inc row))))
+(for [row (range 10)] (into [] (map #(n-choose-k row %) (range (inc row)))))
+(for [row (range 300)] (into [] (map #(n-choose-k row %) (range (inc row)))))
+(for [row (range 200)] (into [] (map #(n-choose-k row %) (range (inc row)))))
+(defn factorial [n] (reduce * 1 (map long (range 2 (inc n)))))
+(defn fact [n] (reduce * 1 (map long (range 2 (inc n)))))
+(fact 300)
+(map long (range 2 (inc n)))
+(map long (range 2 (inc 10)))
+(map long (range 2 (inc 300)))
+(reduce * 1 (map long (range 2 (inc 300))))
+bigint
+(reduce * 1 (map bigint (range 2 (inc 300))))
+clear
+ls
+(require '[pascals-triangle :refer :all])
+(take 1 triangle)
+(nth 5 triangle)
+(nth triangle 5)
+(= 10 (bigint 10))
