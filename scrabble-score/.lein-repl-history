@@ -1,0 +1,6 @@
+(require '[scrabble-score :as s])
+(clojure.string/upper-case "a")
+(map identity "a")
+(map identity (clojure.string/upper-case "a"))
+(map s/score-letter (clojure.string/upper-case "a"))
+(map s/score-letter (clojure.string/upper-case "A"))
