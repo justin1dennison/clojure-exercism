@@ -1,0 +1,37 @@
+(defn factors [n]
+(def n 6)
+(->>
+   n
+   (range 1)
+   (map #(/ n %)))
+(->>
+   n
+   (range 1)
+   (map #(= (mod n %) 0)))
+(->>
+   n
+   (range 1)
+   (filter #(= (mod n %) 0)))
+(:require '[perfect-numbers :refer :all])
+(factors 12)
+(:require '[perfect-numbers :as p])
+(:require '[perfect-numbers :as p
+]])
+(:require '[perfect-numbers :as p])
+p/factors
+(:use '[perfect-numbers :as p])
+(p/factors 12)
+(:require 'perfect-numbers)
+(perfect-numbers/factors 12)
+(:require '[perfect_numbers :as p])
+(p/factors 12)
+(defn factors [n]
+ (->> n
+      (range 1)
+      (filter #(= 0 (mod n %)))))
+(factors 12)
+(reduce + 0 (factors 12))
+(require '[perfect-numbers :as p])
+(p/factors 12)
+(p/abundant? 12)
+(p/abundant? 13)
