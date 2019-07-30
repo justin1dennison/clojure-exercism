@@ -1,16 +1,15 @@
-(ns rna-transcription
-  (:require [clojure.set :as set]))
+(ns rna-transcription)
 
-(def transcribe {\G \C \C \G \T \A \A \U})
-(defn valid? [strand] 
-  (set/subset? (set strand) #{\G \C \T \A}))
+(defn transcribe [n]
+  (let [lookup {\G \C \C \G \T \A \A \U}]
+    (assert (contains? lookup n))
+    (lookup n)))
 
 (defn to-rna [dna]
-  (assert (valid? dna))
   (->> dna
        (map transcribe)
        (apply str)))
-    
 
 
-  
+
+
