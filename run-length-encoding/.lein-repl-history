@@ -1,0 +1,223 @@
+(empty? "")
+(def sample "AABCCCDEEEE")
+(map #([% 1]) sample)
+(map #(vec % 1) sample)
+(map (fn [n] [n 1]) sample) 
+(->> sample
+  (map (fn [n] [(str n) 1]))
+  )
+(take-while = sample)
+sample
+(take-while #(= "A" %) sample)
+(take-while #(= % "A") sample)
+(take-while = sample)
+(frequency sample)
+(frequencies sample)
+(parition-by identity sample)
+(partition-by identity sample)
+(map frequencies (partition-by identity sample))
+(reduce concat (map frequencies (partition-by identity sample)))
+(map frequencies (partition-by identity sample))
+(reduce (fn [acc [k v]] (str v k)) "" (map frequencies (partition-by identity sample)))
+(reduce (fn [acc [k v]] (str v k))  (map frequencies (partition-by identity sample)))
+(reduce (fn [acc [k v]] (concat acc (str v k))) (map frequencies (partition-by identity sample)))
+(map frequencies (partition-by identity sample))
+(reduce concat (map frequencies (partition-by identity sample)))
+(keys {})
+(map #(((juxt keys vals) (frequencies %))) (partition-by identity sample))
+(partition-by identity sample)
+(frequencies sample)
+(map (fn [[k v]] [k v]) (frequencies sample))
+(into (frequencies sample))
+(into [] (frequencies sample))
+(let [ parts (partition-by identity sample)
+       counts (map #(into [] (frequencies %)) parts)]
+    (reduce (fn [acc [k v]] (concat acc (str k v))) counts))
+(let [ parts (partition-by identity sample)
+       counts (map #(into [] (frequencies %)) parts)]
+    counts)
+(let [ parts (partition-by identity sample)
+       counts (map #(into [] (frequencies %)) parts)]
+    (reduce (fn [acc [k v]] (concat acc (str k v))) "" counts))
+(let [ parts (partition-by identity sample)
+       counts (map #(into [] (frequencies %)) parts)]
+    (reduce (fn [acc [k v]] (concat acc (apply str (k v))) "" counts))
+)
+(let [ parts (partition-by identity sample)
+       counts (map #(into [] (frequencies %)) parts)]
+    (reduce (fn [acc [k v]] (concat acc (apply str (k v))) counts))
+)
+(let [parts (partition-by identity sample)
+      counts (map #(into [] (frequencies %)) parts)
+      pairs (map (partial apply str) counts)]
+    pairs
+)
+(let [parts (partition-by identity sample)
+      counts (map #(into [] (frequencies %)) parts)
+      pairs (map str counts)]
+    pairs)
+(let [parts (partition-by identity sample)
+      counts (map #(into [] (frequencies %)) parts)
+      pairs (map str counts)]
+    counts)
+(let [parts (partition-by identity sample)
+      counts (into [] (map frequencies parts))
+      pairs (apply str counts)]
+   pairs)
+(let [parts (partition-by identity sample)
+      counts (into [] (map frequencies parts))
+      pairs (apply str counts)]
+   counts)
+(let [parts (partition-by identity sample)
+      counts (map #(into [] (frequencies %)) parts)]
+    (apply concat counts))
+(let [parts (partition-by identity sample)
+      counts (map #(into [] (frequencies %)) parts)]
+    counts)
+(let [parts (partition-by identity sample)
+      counts (map #(vec (frequencies %)) parts)]
+   counts)
+(map frequencies (partition-by identity sample))
+(into [] cat (map frequencies (partition-by identity sample)))
+(let [parts (partition-by identity sample)
+      counts (into [] cat (map frequencies parts))
+     ]
+    (reduce (fn [acc [letter n]] (concat acc (str letter n))) counts))
+(let [parts (partition-by identity sample)
+      counts (into [] cat (map frequencies parts))
+(mapcat #(into [] (frequencies %) (partition-by identity sample))) 
+(def parts (partition-by identity sample))
+(def counts (into [] cat (map frequencies parts)))
+counts
+(apply #(str %) counts)
+(map #(str %) counts)
+(map #(apply str %) counts)
+(reduce conj (map #(apply str %) counts))
+(concat (map #(apply str %) counts))
+(reduce concat (map #(apply str %) counts))
+(clojure.string.join (map #(apply str %) counts))
+(clojure.string/join (map #(apply str %) counts))
+(def sample "12WB12W3B24WB")
+(partition-by #{ \W } sample)
+(partition-by #{\W} sample)
+(partition-by #{\W \B} sample)
+(partition-by Character/isDigit sample)
+java.lang.Character
+java.lang.Character/isDigits
+java.lang.Character/isDigit
+(.isDigit Character \2)
+(Character.isDigit \2)
+Character
+(doc Character)
+(help Character)
+(Character/isDigit \1)
+(partition-by Character/isDigit (seq sample))
+(partition-by identity sample)
+(take-while Character/isDigit sample)
+(take-while #(Character/isDigit %) sample)
+(partition-by #(Character/isDigit %) (seq sample))
+(partition-by #(Character/isAlphabetic %) (seq sample))
+(Character/isAlphabetic \A)
+(Character/isLetter \A)
+(partition-by #(Character/isLetter %) (seq sample))
+(def digit? Character/isDigit)
+(defn digit? [n] (Character/isDigit n))
+(digit? \1)
+(digit? \A)
+(defn letter? [n] (Character/isLetter n))
+(letter? \A
+)
+(take-while digit? sample)
+(take 10 sample)
+(take 100 sample)
+(take 1 (drop 100 sample))
+(defn digit? [n] (Character/isDigit n))
+(defn letter? [n] (Character/isLetter n))
+(def sample "12WB12W3B24WB")
+(let [n (do (take-while digit? sample))
+      c (do (take-while letter? (drop-while digit? sample)))]
+     [n c])
+(let [n (do (take-while digit? sample))
+      digit-count (count n)
+      c (do (take 1 (drop n sample))))]
+(let [n (do (take-while digit? sample))
+      c (do (take 1 (drop n sample)))]
+   [n c])
+(let [n (do (take-while digit? sample))
+      digit-count (count n)
+      c (do (take 1 (drop digit-count sample)))]
+    [n c])
+(let [n (do (take-while digit? sample))
+      digit-count (count n)
+      c (do (take 1 (drop digit-count sample)))
+      nxt (drop (+ digit-count (count c)) sample)]
+   [n c nxt])
+(apply int (list \1 \2))
+(Integer/parseInt (apply str (list \1 \2)))
+(let [n (do (take-while digit? sample))
+      digit-count (count n)
+      c (do (take 1 (drop digit-count sample)))
+      letter-count (count c)
+      nxt (drop (+ digit-count letter-count) sample)]
+    [n c nxt])
+(loop [start sample acc []]
+  (if (empty? start)
+    acc
+    (let [n (take-while digit? start)
+          digit-count (count n)
+          c (take 1 (drop digit-count start))
+          letter-count (count c)
+          nxt (drop (+ digit-count letter-count) start)]
+    (recur nxt (conj acc (repeat (Integer/parseInt (apply str n)) (str c))))))
+)
+(loop [start sample acc []]
+  (if (empty? start)
+    acc
+    (let [n (take-while digit? start)
+          digit-count (count n)
+          c (take 1 (drop digit-count start))
+          nxt (drop (+ digit-count letter-count) start)]
+    (recur nxt (conj acc (repeat 1 (str c))))))
+)
+(loop [start sample acc []]
+  (if (empty? start)
+    acc
+    (let [n (take-while digit? start)
+          digit-count (count n)
+          c (take 1 (drop digit-count start))
+          letter-count (count c)
+          nxt (drop (+ digit-count letter-count) start)]
+    (recur nxt (conj acc (repeat 1 (str c))))))
+)
+(loop [start sample acc []]
+  (if (empty? start)
+    acc
+    (let [n (take-while digit? start)
+          digit-count (count n)
+          c (take 1 (drop digit-count start))
+          letter-count (count c)
+          nxt (drop (+ digit-count letter-count) start)]
+    (recur nxt (conj acc (do (repeat 1 (str c)))))))
+)
+(loop [start sample acc []]
+  (if (empty? start)
+    acc
+    (let [n (take-while digit? start)
+          digit-count (count n)
+          c (take 1 (drop digit-count start))
+          letter-count (count c)
+          nxt (drop (+ digit-count letter-count) start)]
+    (recur nxt (conj acc (into [] (repeat 1 (str c))))))))
+(loop [start sample acc []]
+    acc
+(loop [start sample acc []]
+  (if (empty? start)
+    acc
+    (let [n (take-while digit? start)
+          digit-count (count n)
+          c (take 1 (drop digit-count start))
+          letter-count (count c)
+          nxt (drop (+ digit-count letter-count) start)]
+    (recur nxt (conj acc [(Integer/parseInt (apply str n)) (str c)])))))))
+(loop [start sample acc []]
+  (if (empty? start)
