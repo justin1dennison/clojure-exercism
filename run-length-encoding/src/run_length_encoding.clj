@@ -17,7 +17,6 @@
           (str (if  (one? n) "" n) letter))
         counts)))))
 
-(def sample "12WB12W3B24WB")
 (defn digit? [n] (Character/isDigit n))
 (defn letter? [n] (Character/isLetter n))
 
@@ -27,11 +26,11 @@
   (loop [start cipher-text acc []]
     (if (empty? start)
       (join (map (partial apply str) acc))
-      (let [n (do (take-while digit? start))
+      (let [n (take-while digit? start)
             digit-count (count n)
             c (take 1 (drop digit-count start))
             letter-count (count c)
-            nxt (do (drop (+ digit-count letter-count) start))
+            nxt (drop (+ digit-count letter-count) start)
             num (Integer/parseInt (if (empty? n) "1" (apply str n)))
             letter (apply str c)]
         (recur nxt
