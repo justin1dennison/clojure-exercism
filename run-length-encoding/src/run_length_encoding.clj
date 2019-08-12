@@ -3,22 +3,20 @@
 
 (defn one? [n]
   (= n 1))
+(defn digit? [n] (Character/isDigit n))
+(defn letter? [n] (Character/isLetter n))
+(defn encode-part [[letter n]]
+  (str (if  (one? n) "" n) letter))
 
 (defn run-length-encode
   "encodes a string with run-length-encoding"
   [plain-text]
-  (if (empty? plain-text)
-    plain-text
-    (let [parts (partition-by identity plain-text)
-          counts (into [] cat (map frequencies parts))]
-      (join
-       (map
-        (fn [[letter n]]
-          (str (if  (one? n) "" n) letter))
-        counts)))))
+  (->> (partition-by identity plain-text)
+       (map frequencies)
+       (into [] cat)
+       (map encode-part)
+       join))
 
-(defn digit? [n] (Character/isDigit n))
-(defn letter? [n] (Character/isLetter n))
 
 (defn run-length-decode
   "decodes a run-length-encoded string"
