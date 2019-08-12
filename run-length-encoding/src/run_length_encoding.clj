@@ -1,25 +1,25 @@
 (ns run-length-encoding
   (:require [clojure.string :refer [join]]))
 
-(defn one? [n]
+(defn- one? [n]
   (= n 1))
-(defn digit? [n] (Character/isDigit n))
-(defn letter? [n] (Character/isLetter n))
+(defn- digit? [n] (Character/isDigit n))
+(defn- letter? [n] (Character/isLetter n))
 
-(defn encode-part [[letter n]]
-  (str (if  (one? n) "" n) letter))
+(defn- encode-part [part]
+  (let [n (count part)
+        letter (first part)]
+    (str (if (one? n) "" n) letter)))
+
 
 (defn run-length-encode
   "encodes a string with run-length-encoding"
   [plain-text]
   (->> (partition-by identity plain-text)
-       (map frequencies)
-       (into [] cat)
        (map encode-part)
        join))
 
-
-(defn decode-part [g]
+(defn- decode-part [g]
   (let [letter (last g)
         number (join "" (drop-last g))]
     (if (empty? number)
