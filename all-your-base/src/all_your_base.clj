@@ -13,24 +13,29 @@
        (reduce +)
        int))
 
-(defn- n->base-digits [desired-base decimal-number ]
-  (loop [start decimal-number digs '()] 
+(defn- n->base-digits [desired-base decimal-number]
+  (loop [start decimal-number digs '()]
     (if (zero? start)
       digs
       (recur (quot start desired-base) (conj digs (mod start desired-base))))))
 
+(defn- invalid-digits? [digits base]
+  (or (some neg? digits)
+      (empty? digits)
+      (some #(>= % base) digits)))
+
+(defn- invalid-base? [base]
+  (or
+   (neg? base)
+   (one? base)
+   (zero? base)))
+
 (defn convert [original-base digits desired-base]
   (cond
     (or
-     (neg? original-base)
-     (neg? desired-base)
-     (one? original-base)
-     (one? desired-base)
-     (empty? digits)
-     (zero? original-base)
-     (zero? desired-base)
-     (some neg? digits)
-     (some #(>= % original-base) digits)) nil
+     (invalid-base? original-base)
+     (invalid-base? desired-base)
+     (invalid-digits? digits original-base)) nil
     (every? zero? digits) '(0)
     :else (->> digits
                (digits->decimal original-base)
