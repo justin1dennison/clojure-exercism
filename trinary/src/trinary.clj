@@ -6,20 +6,17 @@
 (defn- char->int [c]
   (- (int c) 48))
 
-(defn- convert [power amount]
+(defn- convert->trinary-digit [power amount]
   (* (char->int amount) (Math/pow 3 power)))
 
 (defn- valid? [n]
-  (->> valid-digits
-       (difference (set n))
-       (count)
-       zero?))
+  (every? valid-digits n))
 
 (defn to-decimal [n]
   (if (valid? n)
     (->> n
          (reverse)
-         (map-indexed convert)
+         (map-indexed convert->trinary-digit)
          (reduce +)
          int)
     0))
