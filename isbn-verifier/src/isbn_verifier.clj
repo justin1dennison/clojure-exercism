@@ -15,16 +15,17 @@
   (let [cleaned (s/replace isbn #"-" "")
         match (re-find re-isbn-pattern cleaned)
         calculation #(* %1 (inc %2))]
-    (if (or (> (count cleaned) 10) (nil? match))
-      false
-      (->> match
-           (map char->int)
-           (reverse)
-           (reduce (fn [[sum idx] element]
-                     [(+ sum (calculation element idx))
-                      (inc idx)]) [0 0])
-           first
-           mod-eleven
-           zero?))))
+    (and
+     (= (count cleaned) 10)
+     (not (nil? match))
+     (->> match
+          (map char->int)
+          (reverse)
+          (reduce (fn [[sum idx] element]
+                    [(+ sum (calculation element idx))
+                     (inc idx)]) [0 0])
+          first
+          mod-eleven
+          zero?))))
 
 
