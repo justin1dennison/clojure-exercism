@@ -11,20 +11,20 @@
 (defn- mod-eleven [n]
   (mod n 11))
 
+(defn- calculation [idx element]
+  (* element (inc idx)))
+
 (defn isbn? [isbn]
   (let [cleaned (s/replace isbn #"-" "")
-        match (re-find re-isbn-pattern cleaned)
-        calculation #(* %1 (inc %2))]
+        match (re-find re-isbn-pattern cleaned)]
     (and
      (= (count cleaned) 10)
      (not (nil? match))
      (->> match
           (map char->int)
           (reverse)
-          (reduce (fn [[sum idx] element]
-                    [(+ sum (calculation element idx))
-                     (inc idx)]) [0 0])
-          first
+          (map-indexed calculation)
+          (reduce +)
           mod-eleven
           zero?))))
 
