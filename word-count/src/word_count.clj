@@ -1,7 +1,7 @@
 (ns word-count
   (:require [clojure.string :as str]))
 
-(def punctuation ",!?@#$%&^*():")
+(def ^:private punctuation ",!?@#$%&^*():")
 
 (defn- strip [chars coll]
   (apply str (remove (set chars) coll)))
