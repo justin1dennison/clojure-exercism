@@ -7,9 +7,7 @@
         source (s/lower-case source)]
     (and
      (not= target source)
-     (= (frequencies target) (frequencies source))
-     (= (count source) (count target))
-     (set/subset? (set source) (set target)))))
+     (= (frequencies target) (frequencies source)))))
 
 (defn anagrams-for [word prospect-list]
   (->> prospect-list
