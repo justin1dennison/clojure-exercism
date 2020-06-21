@@ -15,8 +15,7 @@
 
 (defn number [num]
   (cond
-    (< num 0) (throw (IllegalArgumentException. "Cannot be less than zero"))
-    (> num (dec trillions)) (throw (IllegalArgumentException. "Too Big"))
+    (not (<= 0 num (dec trillions))) (throw (IllegalArgumentException. "Invalid Number"))
     (< num 20) (get small-numbers num)
     (< num 100) (let [base (get tens (- (quot num 10) 2))
                       remainder (mod num 10)
