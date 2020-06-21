@@ -1,0 +1,187 @@
+(into [] (range 1 10))
+(vector-of (range 1 10))
+(vector (range 1 10))
+(vec (range 1 10))
+(loop [result [] 
+       n 378]
+   (if (zero? n)
+       result
+       (recur (conj result (mod 10 n)) (/ n 10))))
+(/ 378 10)
+(int (/ 378 10))
+(mod 378 10)
+(int (/ 37 10))
+(int (/ (int (/ 37 10)) 10))
+(loop [result []
+       n 378]
+       (if (zero? n)
+           result
+           (recur (conj result (mod n 10)) (int (/ n 10)))))
+(loop [result []
+       n 378]
+      (if (zero? n)
+          (reverse result)
+          (recur (conj result (mod n 10)) (int (/ n 10)))))
+(rseq [3, 2, 1])
+(let [ds [3 7 8]
+      len (length ds)])
+(count [3 7 8])
+(defn pow [b n] (reduce * (repeat b n)))
+(pow 10 2)
+(defn pow [b n] (reduce * (repeat n b)))
+(pow 10 2)
+(let [ds [3 7 8]
+      length (count ds)
+      ] (map-indexed (fn [x i] (pow 10 (- length i)))))
+(def ds [3 7 8])
+(def length (count ds))
+(def powers-of-ten (map-indexed (fn [k i] (pow 10 (- length i))) ds))
+powers-of-ten 
+(- length 0
+)
+(def powers-of-ten 
+   (map-indexed 
+     (fn [idx k]
+         (pow 10 (- length idx)))))
+powers-of-ten 
+(def powers-of-ten 
+   (map-indexed 
+     (fn [idx k]
+         (pow 10 (- length idx))) ds))
+powers-of-ten 
+(def powers-of-ten 
+    (map-indexed 
+       (fn [idx k]
+           (pow 10 (- length idx 1))) ds))
+powers-of-ten 
+(map vector powers-of-ten ds)
+(map (comp (fn [[x y]] (* x y)) vector) powers-of-ten ds)
+(-> ds
+    (map vector powers-of-ten))
+(apply + [1 2 3])
+(partial apply +)
+(def f (partial apply +))
+(map (comp f vector) powers-of-ten ds)
+(def f (partial apply *))
+(map (comp f vector) powers-of-ten ds)
+(require '[clojure.contrib.math :as m])
+(:help require)
+(help require)
+(take 5 (range))
+(map (* 10) (range 1 10))
+(map (partial * 10) (range 1 10))
+(map (comp (partial * 10)
+(-> 10
+    (+ 1))
+(-> 10
+    (+ 1))
+(fn [x] (-> x (+ 1)))
+(defn g[x] (-> x (+ 1)))
+(x 2)
+(g 2)
+(map inc (range 1 10))
+(map inc (10 10 10))
+(map inc '(10 10 10))
+(map (comp (partial * 2) inc) [1 2 3])
+(map (comp (partial * 2) inc inc) [1 2 3])
+(def f [n] (-> n
+           (inc)
+           (* 2))
+)
+(defn f [n] 
+    (-> n
+      (inc)
+      (* 2))))
+(defn f [n]
+     (-> n
+        (inc)
+        (* 2)))
+(f 2)
+(defn ap [fs]
+   (apply comp fs))
+(ap [inc dec inc dec (partial * 10)] 1)
+(apply comp [inc dec inc inc])
+((apply comp [inc dec inc inc]) 1)
+(defn ap [fs]
+   (fn [& args]
+       ((apply comp fs) args)))
+(ap [inc inc inc] 10)
+(ap [inc inc inc] 10 10)
+(ap [inc inc inc])
+(defn ap [& fs]
+    (fn [& args]
+        ((apply comp fs) args)))
+(ap inc (partial * 2))
+(let [f (ap inc (partial * 2))]
+     (map f (range 1 10)))
+((ap inc inc inc) 5)
+(complement not)
+((complement not) true)
+(not true)
+(not false)
+(not zero?)
+(complement zero?)
+(def not-zero? (complement zero?))
+(not-zero? 0)
+(not-zero? 1)
+(not-zero? 2)
+(complement nil?)
+(def not-nil? (complement nil?))
+(not-nil? 3)
+(not-nil? nil)
+({})
+(map)
+{}
+(assoc :one 1 {})
+(assoc {} :one 1)
+(-> {}
+  (assoc :hair :red))
+  (assoc :hair :red)
+(-> {}
+  (assoc :hair :red)
+  (assoc :one 1))
+(dissoc {:hair :red, :one 1 } 1)
+(dissoc {:hair :red, :one 1 } :one)
+(partial dissoc {:hair :red, :one 1})
+(map (partial dissoc {:hair :red, :one 1}) [:hair :one])
+(hashmap (map vector ["one", "two"] range))
+(hash-map (map vector ["one", "two"] range))
+(hash-map (map vector ["one", "two"] (range)))
+(map vector ["one", "two"] (range))
+(interleave ["one", "two"] (range 1 3))
+(apply hash-map (interleave ["one", "two"] (range 1 3)))
+(small-numbers)
+(get 1 ["one", "two"])
+(get ["one", "two"] 1)
+(require '[say])
+(say/number 20)
+(say/number 10)
+(say/number 2)
+(say/number 21)
+(require '[say])
+(say/number 20)
+(str "twenty" "-" nil)
+(require '[say])
+(say/number 20)
+(require '[say])
+(say/number 20)
+(say/number 14)
+(say/number 0)
+(require '[say])
+(say/number 0)
+(say/number 1)
+(require '[say])
+(say/number 1)
+(say/number 0)
+(require '[say])
+(say/number 0)
+(say/number 1)
+(require '[say])
+(say/number 1)
+(say/number 0)
+(say/number 14)
+(say/number 20)
+(require '[say])
+(say/number 24)
+(say/number 34)
+(say/number 99)
