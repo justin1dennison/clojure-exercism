@@ -8,10 +8,18 @@
 (def tens ["twenty", "thirty", "forty", "fifty", "sixty",
            "seventy", "eighty", "ninety"])
 
-(def thousands 1000)
-(def millions 1000000)
-(def billions 1000000000)
-(def trillions 1000000000000)
+(def trillions 1e12)
+
+(def ^:private ^:const mags
+  [[1000000000 "billion"]
+   [1000000    "million"]
+   [1000       "thousand"]
+   [100        "hundred"]])
+
+(defn select [n]
+  (first
+   (drop-while
+    #(< n (first %)) mags)))
 
 (defn number [num]
   (cond
@@ -21,32 +29,10 @@
                       remainder (mod num 10)
                       ones  (get small-numbers remainder)]
                   (if (zero? remainder) base (str base "-" ones)))
-    (< num thousands) (let [d (quot num 100)
-                            remainder (mod num 100)
-                            base (get small-numbers d)
-                            unit "hundred"]
-                        (if (zero? remainder)
-                          (str base " " unit)
-                          (str (number d) " " unit " " (number remainder))))
-    (< num millions) (let [d (quot num 1000)
-                           remainder (mod num 1000)
-                           base (get small-numbers d)
-                           unit "thousand"]
-                       (if (zero? remainder)
-                         (str base " " unit)
-                         (str (number d) " " unit " " (number remainder))))
-    (< num billions) (let [d (quot num 1000000)
-                           remainder (mod num 1000000)
-                           base (get small-numbers d)
-                           unit "million"]
-                       (if (zero? remainder)
-                         (str base " " unit)
-                         (str (number d) " " unit " " (number remainder))))
-    :else (let [d (quot num 1000000000)
-                remainder (mod num 1000000000)
-                base (get small-numbers d)
-                unit "billion"]
+    :else (let [[value unit] (select num)
+                d (quot num value)
+                remainder (mod num value)
+                base (get small-numbers d)]
             (if (zero? remainder)
               (str base " " unit)
               (str (number d) " " unit " " (number remainder))))))
-
